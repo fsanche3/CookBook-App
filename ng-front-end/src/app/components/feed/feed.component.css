@@ -25,7 +25,8 @@
     background: white; /* post background color */
     border-radius: 0.5rem;
     position: relative;
-    width: 350px; /* post card width */
+    width: 275px; /* post card width */
+    height: 400px;
     margin: 1rem;
     transition: 250ms all ease-in-out;
     cursor: pointer;

@@ -7,10 +7,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  @Output() mealEmitter = new EventEmitter < any > ();  
-  food: any;
+  isToggled: boolean = false;
+
+  preview : any;
 
   constructor() { }
+
+
   
 anyEggs = {
   'id': '1',
@@ -50,8 +53,7 @@ list: any[] = [this.anyEggs, this.yummyEggs, this.garlicBread];
   ngOnInit(): void {
   }
 
-  PostData() {  
-    this.mealEmitter.emit(this.list);  
-} 
+  
+
 
 }
