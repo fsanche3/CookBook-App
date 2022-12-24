@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FeedComponent } from './components/feed/feed.component';
-import { MealComponent } from './components/meal/meal.component';
 import { HomeComponent } from './components/home/home.component';
 
 
@@ -14,7 +13,6 @@ import { HomeComponent } from './components/home/home.component';
     AppComponent,
     NavComponent,
     FeedComponent,
-    MealComponent,
     HomeComponent
   ],
   imports: [
