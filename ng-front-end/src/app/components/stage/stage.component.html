@@ -1,36 +1,44 @@
-<div class="header">
-    <h3>{{name}}</h3>
-  </div>
-  
-  <div class="row">
-    <div class="leftcolumn">
-      <div class="card">
-        <h3>Cook Time: {{cook_time}}</h3>
-        <h5>Type: {{type}}</h5>
-        <img src={{img_url}} alt="Meal selected" style="max-height: 400px; max-width: 75%;" >
-        <h3>Description: {{description}}</h3>
-        <h3>Instructions: {{instructions}}</h3>
-      </div>
-      
+<div class="container">
+    <header>
+    <h1 class="heading-1">{{name}}</h1>
+    <div class="sub-heading">
+      <p>Cook time: <span>{{cook_time}}</span></p>
+      <p class="importent">{{type}}</p>
     </div>
-    <div class="rightcolumn">
-      <div class="card">
-        <h2>Ingredients</h2>
-        <p>{{ingredients}}</p>
+    </header>
+
+    <div class="main">
+      <div class="home">
+        <div class="left">
+          <img src={{img_url}} class="home-img" alt="Meal photo">
+
+          <h4 class="heading-2">
+           Description: <span>{{description}}</span>
+          </h4>
+         
+        </div>
+
+        <div class="right">
+          <h3 class="heading-3">Ingredients</h3>
+          <div class="lists">
+            <div class="list">
+           
+              <p>{{ingredients}}</p>
+            </div>
+         
+          </div>
+
+          <h3 class="heading-3">Views</h3>
+          <div class="lists">
+            <div class="list">
+              <p>{{looks}}</p>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="card">
-        <h3>Views: {{looks}}</h3>
-        <div class="fakeimg">Image</div><br>
-        <div class="fakeimg">Image</div><br>
-        <div class="fakeimg">Image</div>
-      </div>
-      <div class="card">
-        <h3>Follow Me</h3>
-        <p>Some text..</p>
-      </div>
+
+     <h3>Instructions</h3>
+     <p>{{instructions}}</p>
     </div>
-  </div>
-  
-  <div class="footer">
-    <h2>Footer</h2>
   </div>

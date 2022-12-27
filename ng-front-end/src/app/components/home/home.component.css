@@ -94,7 +94,6 @@
   /* If you want the content centered horizontally and vertically */
   .centered {
     position: absolute;
-    display: inline-flex;
     text-align: center;
   }
   

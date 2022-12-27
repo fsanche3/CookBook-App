@@ -13,7 +13,7 @@
   
   /* Basic design of blog card */
   .wrapper {
-    display: flex;
+    display: table-cell;
     flex-wrap: wrap;
     justify-content: center;
   }

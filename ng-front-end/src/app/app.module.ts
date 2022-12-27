@@ -6,6 +6,9 @@ import { NavComponent } from './components/nav/nav.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { HomeComponent } from './components/home/home.component';
 import { StageComponent } from './components/stage/stage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -16,10 +19,12 @@ import { StageComponent } from './components/stage/stage.component';
     FeedComponent,
     HomeComponent,
     StageComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
