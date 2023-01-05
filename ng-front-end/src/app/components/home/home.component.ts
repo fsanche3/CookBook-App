@@ -13,6 +13,14 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  displayStyle = "none";
+  
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
 
   
 anyEggs = {
