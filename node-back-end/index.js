@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const db = require('./src/config/dbConfig')
 let recipe = require('./src/routes/recipe');
-const imageUpload = require('express-fileupload')
+const cors = require('cors');
 require("dotenv").config();
 
-app.use(imageUpload());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

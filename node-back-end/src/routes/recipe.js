@@ -1,92 +1,41 @@
 const { Router } = require('express');
-const router = Router();
+const recipeController = require('../controllers/recipe');
 const errHandler = require('../middleware/errorHandler');
-const pool = require('../config/dbConfig');
-const fs = require('fs');
-const S3 = require('aws-sdk/clients/s3');
+const router = Router();
+const aws = require('aws-sdk')
+const multer = require('multer')
+const multerS3 = require('multer-s3');
 require('dotenv').config();
 
+aws.config.update({
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    region: process.env.AWS_BUCKET_REGION
+});
 
-router.post('/add_recipe', async (req, res, next) =>{
-    try{ 
-    let {name, description, type, cook_time, 
-        img_url, instructions, looks} = req.body; 
+let s3 = new aws.S3();
 
-    let resp =  
-    await pool.query('INSERT INTO recipe (name, description, type, cook_time, img_url, instructions, looks) VALUES($1, $2, $3, $4, $5, $6, $7)',
-    [name, description, type, cook_time, img_url, instructions, looks]);
-
-    if(!resp.rowCount){
-        throw new Error("Could not insert recipe") ;
-    }
-        return res.send(resp);
-
-    }catch(err){
-        return next(err)    
-    }
-})
-
-router.post('/add_img', async (req, res, next) => {
-    try{
-        /*
-        let s3 = new S3(
-            process.env.AWS_BUCKET_REGION,
-            process.env.AWS_ACCESS_KEY,
-            process.env.AWS_SECRET_KEY
-        );
-        */
-        console.log(req.files)
-        return res.send("CHECk")
-        /*
-        let uploadParameters = {
-            Bucket: process.env.AWS_BUCKET_NAME,
-            Body: Buffer.from(req.file.stream),
-            Key: req.file.name
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        acl: "public-read",
+        bucket: process.env.AWS_BUCKET_NAME,
+        key: function (req, file, cb) {
+            cb(null, Date.now() + '--' +file.originalname)
         }
-
-        let verify = await s3.upload(uploadParameters).promise();
-        */
-        if(!verify){
-            throw new Error("Image Upload Unsuccessful");
-        }
-
-        return verify; 
-
-    } catch (err){
-        return next(err);
-    }
+    })
 })
 
-router.get('/get_by_type/:type', async (req, res, next) => {
-    try{
-    let {type} = req.params;
-    let resp = await pool.query('SELECT * FROM RECIPE WHERE type = $1',[type]);
-
-    if(!resp.rowCount){
-        throw new Error("Could Not Retrieve Recipes By Type");
-    } 
-    
-    return res.send(resp);
-
-    } catch (err){
-        return next(err);
-    }
+router.post('/add_img', upload.single('file'), (req, res, next) => {
+    console.log(req.file);
+    res.send(req.file.location)
 })
 
-router.get('/:id', async (req, res, next) => {
-    try{
-    let {id} = req.params;
-    let resp = await pool.query('SELECT * FROM recipe WHERE id = $1',[id]);
+router.post('/add_recipe', recipeController.addRecipe);
 
-    if(!resp.rowCount){
-        throw new Error("Could Not Retrieve Recipe By ID");
-    }     
-    return res.send(resp);
+router.get('/type/:type', recipeController.getByType)
 
-    } catch(err){
-        return next(err);
-    }
-})
+router.get('/:id', recipeController.getById)
 
 router.use(errHandler);
 
