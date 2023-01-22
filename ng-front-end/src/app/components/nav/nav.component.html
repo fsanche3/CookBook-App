@@ -1,24 +1,18 @@
-<div class="nav">
-<div class="left-nav">
-        <a style="cursor: pointer;" class="opt">Breakfest</a>
-        <a style="cursor: pointer;" class="opt">Lunch</a>
-        <a style="cursor: pointer;" class="opt">Dinner</a>
-        <a style="cursor: pointer;" class="opt">Snack</a>
-    </div>
-    <div class="right-nav">
-        <a style="cursor: pointer;" class="opt">Add Meal</a>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-
-<div ng-app="sample" >
-  <div class="sample ten">
-    <input type="text" name="search" ng-model="search.$" placeholder="search">
-    <button style="cursor:pointer;" type="submit" class="btn btn-search">
-      <i class="fa fa-search"></i>
-    </button>
-    <button style="cursor: pointer;" type="reset" class="btn btn-reset fa fa-times"></button>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="cursor: pointer;" (click)="goHome()">Home</a>
+    <a>Add Meal</a>
+    <form class="d-flex input-group w-auto">
+      <input
+        type="search"
+        type="search"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </form>
   </div>
-  <br>
-</div>
-    </div>
-</div>
+</nav>

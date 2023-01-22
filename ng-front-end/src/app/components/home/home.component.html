@@ -1,4 +1,3 @@
-
 <div class="random">
 <button
   type="button"
@@ -16,9 +15,9 @@
         <h4 class="modal-title">Pick a Meal!</h4>
       </div>
       <div class="modal-body">
-        <button>Breakfest</button>
-        <button>Lunch</button>
-        <button>Dinner</button>
+        <button (click)="randomBreakfest()">Breakfest</button>
+        <button (click)="randomLunch()" >Lunch</button>
+        <button (click)="randomDinner()">Dinner</button>
 
       </div>
       <div class="modal-footer">
@@ -31,11 +30,29 @@
   </div>
 </div>
 </div>
-<div class="split left">
+<div class="split">
+  <div class="radio">
+  <label class="container">Breakfest
+    <input (click)="chooseTypeBreakfest()" type="radio" checked="checked" name="radio">
+    <span class="checkmark"></span>
+  </label>
+  <label class="container">Lunch
+    <input (click)="chooseTypeLunch()" type="radio" name="radio">
+    <span class="checkmark"></span>
+  </label>
+  <label class="container">Dinner
+    <input (click)="chooseTypeDinner()" type="radio" name="radio">
+    <span class="checkmark"></span>
+  </label>
+  <div class="total">
+    Total Meals: {{list.length}}
+  </div>
+</div>
     <div class="centered">
         <app-feed *ngFor="let l of list" [food]= "l"></app-feed>
     </div>
   </div>
-  
+
+
 
 

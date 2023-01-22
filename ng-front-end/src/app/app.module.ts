@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { StageComponent } from './components/stage/stage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TestComponent } from './components/test/test.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -19,12 +21,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     FeedComponent,
     HomeComponent,
     StageComponent,
+    TestComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
