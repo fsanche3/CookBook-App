@@ -1,8 +1,7 @@
 const express = require('express');
-const app = express();
-const db = require('./src/config/dbConfig')
-let recipe = require('./src/routes/recipe');
+let routes = require('./src/routes/index');
 const cors = require('cors');
+const app = express();
 require("dotenv").config();
 
 app.use(cors());
@@ -13,7 +12,8 @@ app.get('/',(req, res, next) =>{
     res.send("Server started");
 })
 
-app.use('/recipe', recipe);
+app.use('/recipe', routes.recipeRoute);
+app.use('/ingredients', routes.ingredientRoute);
 
 app.listen(process.env.PORT, () => {
     console.log("Server started on port: "+ process.env.PORT)
