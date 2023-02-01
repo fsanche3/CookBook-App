@@ -22,4 +22,31 @@ let getIngredients = async (req, res, next) => {
     }
 }
 
-module.exports = {getIngredients, addIngredient};
+let getRecipesIngredients = async (req, res, next) => {
+    try{
+        let {id} = req.params;
+        
+        let resp = 
+        await pool.query('SELECT ingredient_id, quantity, quantity_unit FROM ingredients_recipes WHERE recipe_id = $1', [id]);
+
+        return res.send(resp.rows);
+    }catch (err){
+        return next(err);
+    }
+}
+
+let addRecipeIngredient = async (req, res, next) => {
+    try{
+        let {recipe_id, ingredient_id, quantity, quantity_unit} = req.body;
+                
+        let resp = 
+        await pool.query('INSERT INTO ingredients_recipes (recipe_id, ingredient_id, quantity, quantity_unit) VALUES ($1, $2, $3, $4)',
+        [recipe_id, ingredient_id, quantity, quantity_unit]);
+
+        return res.send(resp);
+    }catch (err){
+        return next(err);
+    }
+}
+
+module.exports = {getIngredients, addIngredient, getRecipesIngredients, addRecipeIngredient};

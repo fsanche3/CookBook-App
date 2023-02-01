@@ -6,12 +6,9 @@ require('dotenv').config();
 
 router.get('/', ingredientController.getIngredients);
 
-//get all ingredients from recipe_ingredients using recipe id
-router.get('/recipe/:id');
+router.get('/recipe/:id', ingredientController.getRecipesIngredients);
 
-// Add to many-many table recipe/ingredients(s) and qauntity/unit;
-router.post('/')
-
+router.post('/', ingredientController.addRecipeIngredient);
 
 router.post('/:name', ingredientController.addIngredient);
 

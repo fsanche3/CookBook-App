@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
+  displayStyle = "none";
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -15,6 +17,13 @@ export class NavComponent implements OnInit {
 
   goHome(){
     this.router.navigate(['home']);
+  }
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
   }
 
 }
