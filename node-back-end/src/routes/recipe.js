@@ -17,6 +17,10 @@ router.get('/type/:type', recipeController.getByType)
 
 router.get('/:id', recipeController.getById)
 
+router.get('/', recipeController.getAll)
+
+router.get('/random/:type', recipeController.getRandomByType);
+
 router.use(errHandler);
 
 module.exports = router;

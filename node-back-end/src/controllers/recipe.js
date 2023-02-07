@@ -19,6 +19,21 @@ let addRecipe = async (req, res, next) =>{
         return next(err)    
     }
 };
+let getRandomByType = async (req, res, next) => {
+    try{
+    let {type} = req.params;
+    let resp = await pool.query('SELECT * FROM RECIPE WHERE type = $1',[type]);
+
+    if(!resp.rowCount){
+        throw new Error("Could Not Retrieve Recipes By Type");
+    } 
+    
+    return res.send(resp.rows[Math.floor(Math.random()*resp.rowCount)]);
+
+    } catch (err){
+        return next(err);
+    }
+};
 
 let getByType = async (req, res, next) => {
     try{
@@ -51,5 +66,19 @@ let getById = async (req, res, next) => {
     }
 };
 
+let getAll = async (req, res, next) => {
+    try{
+    let resp = await pool.query('SELECT * FROM recipe');
 
-module.exports = {addRecipe, getByType, getById};
+    if(!resp.rowCount){
+        throw new Error("Could Not Retrieve Recipe's");
+    }     
+    return res.send(resp.rows);
+
+    } catch(err){
+        return next(err);
+    }
+};
+
+
+module.exports = {addRecipe, getByType, getById, getAll, getRandomByType};
