@@ -1,0 +1,33 @@
+<div class="random">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="openPopup()"> Random
+    </button>
+    <div
+      class="modal"
+      tabindex="-1"
+      role="dialog"
+      [ngStyle]="{'display':displayStyle}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Pick a Meal!</h4>
+          </div>
+          <div class="modal-body">
+            <button (click)="selectRandom('Breakfest')">Breakfest</button>
+            <button (click)="selectRandom('Lunch')">Lunch</button>
+            <button (click)="selectRandom('Dinner')">Dinner</button>
+    
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" 
+                    (click)="closePopup()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+   

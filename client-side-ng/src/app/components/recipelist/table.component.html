@@ -1,0 +1,35 @@
+<div class="container" style="background-color: beige;">
+  <div class="top-layer">
+    <div class="chips">
+    <mat-chip-listbox aria-label="Fish selection">
+      <mat-chip-option (click)="filterBreakfest()" style="background-color: yellowgreen;">Breakfest</mat-chip-option>
+      <mat-chip-option (click)="filterLunch()" style="background-color: yellowgreen;">Lunch</mat-chip-option>
+      <mat-chip-option (click)="filterDinner()" style="background-color: yellowgreen;" selected>Dinner</mat-chip-option>
+    </mat-chip-listbox>
+    </div>
+
+     <input [(ngModel)]="searchText" type="text" placeholder="Recipe filter">
+ 
+  </div>
+  
+  <div class="list" *ngFor="let meal of pageSlice | recipeSearch: searchText">
+
+<mat-card style="cursor: pointer;" (click) = "showRecipe(meal)" class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title><h3>{{meal.name}}</h3></mat-card-title>
+        <mat-card-subtitle><i>Cook Time: </i>{{meal.cook_time}} <i> Minutes</i></mat-card-subtitle>
+        <mat-card-subtitle><p> <i>Description: </i>{{meal.description}}</p></mat-card-subtitle>
+        <img mat-card-md-image src="{{meal.img_url}}"  alt="{{meal.name}}">
+      </mat-card-title-group>
+    </mat-card-header>
+  </mat-card>
+</div>
+
+</div>
+<mat-paginator [length]= "this.pageSlice.length"
+              [pageSize]="3"
+              [pageSizeOptions]="[3, 8, 20]"
+              aria-label="Select page"
+              (page)="onPageChange($event)">
+</mat-paginator>

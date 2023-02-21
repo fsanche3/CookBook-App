@@ -1,0 +1,47 @@
+.example-card {
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .container{
+    max-width: 1000px; 
+    margin-top: 2%;
+     padding-top: 5px;
+  }
+
+  .top-layer{
+    display: flex;
+    padding: 1%;
+    justify-content: space-evenly;
+    outline-style: groove;
+    outline-width: thin ;
+ 
+  }
+
+  .list{
+    display: flex;
+    flex-wrap: wrap;
+    }
+
+  .mat-mdc-paginator {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+mat-card {
+  flex: 1 0 21%; /* explanation below */
+  margin: 5px;
+
+
+}
+
+.mat-mdc-card-md-image {
+  width: 164px;
+  height: 165px;
+}
+
+.mat-mdc-card-title-group {
+  display: flex;
+  justify-content: space-between;
+  width: 93%;
+}

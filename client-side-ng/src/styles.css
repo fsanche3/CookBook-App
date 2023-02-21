@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+app-randombutton{
+display: flex;
+justify-content: center;
+padding-top: 2%;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+.any-container{
+  margin-left: 10%;
+  margin-right: 10%;
+
+}
+  

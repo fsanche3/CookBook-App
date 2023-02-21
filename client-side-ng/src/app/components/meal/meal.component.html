@@ -1,0 +1,18 @@
+<div class="any-container" [style.display]="display">
+  <mat-card style="cursor: pointer;" class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title><h3>{{meal?.name}}</h3></mat-card-title>
+        <mat-card-subtitle><i>Cook Time: </i>{{meal?.cook_time}} <i> Minutes</i></mat-card-subtitle>
+        <mat-card-subtitle><p> <i>Description: </i>{{meal?.description}}</p></mat-card-subtitle>
+        <img mat-card-md-image src="{{meal?.img_url}}"  alt="{{meal?.name}}">
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <h4>Instructions: </h4>
+      <p>{{meal?.instructions}}</p>
+    </mat-card-content>
+  </mat-card>
+    <button (click)="close()">I dont care</button>
+  </div>
+
