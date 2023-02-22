@@ -7,14 +7,15 @@
     max-width: 1000px; 
     margin-top: 2%;
      padding-top: 5px;
+     outline-style: groove;
+     outline-width: thin ;
   }
 
   .top-layer{
     display: flex;
     padding: 1%;
     justify-content: space-evenly;
-    outline-style: groove;
-    outline-width: thin ;
+   
  
   }
 
@@ -36,7 +37,7 @@ mat-card {
 }
 
 .mat-mdc-card-md-image {
-  width: 164px;
+  width: 184px;
   height: 165px;
 }
 

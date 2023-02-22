@@ -19,4 +19,29 @@ padding-top: 2%;
   margin-right: 10%;
 
 }
+
+.clear-btn{
+  width: 15%;
+}
   
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+}
+
+.add-meal{
+    position: absolute;
+    right: 15%;
+  padding-top: 1.5px;
+}
+
+.modal-body{
+  display: flex;
+  justify-content: space-evenly;
+}

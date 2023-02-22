@@ -27,7 +27,7 @@ let getRecipesIngredients = async (req, res, next) => {
         let {id} = req.params;
         
         let resp = 
-        await pool.query('SELECT ingredient_id, quantity, quantity_unit FROM ingredients_recipes WHERE recipe_id = $1', [id]);
+        await pool.query('SELECT ingredient_id, quantity, quantity_unit, ingredient_name FROM ingredients_recipes WHERE recipe_id = $1', [id]);
 
         return res.send(resp.rows);
     }catch (err){
@@ -37,11 +37,10 @@ let getRecipesIngredients = async (req, res, next) => {
 
 let addRecipeIngredient = async (req, res, next) => {
     try{
-        let {recipe_id, ingredient_id, quantity, quantity_unit} = req.body;
-                
+        let {recipe_id, ingredient_id, quantity, quantity_unit, ingredient_name} = req.body;
         let resp = 
-        await pool.query('INSERT INTO ingredients_recipes (recipe_id, ingredient_id, quantity, quantity_unit) VALUES ($1, $2, $3, $4)',
-        [recipe_id, ingredient_id, quantity, quantity_unit]);
+        await pool.query('INSERT INTO ingredients_recipes (recipe_id, ingredient_id, quantity, quantity_unit, ingredient_name) VALUES ($1, $2, $3, $4, $5)',
+        [recipe_id, ingredient_id, quantity, quantity_unit, ingredient_name]);
 
         return res.send(resp);
     }catch (err){
