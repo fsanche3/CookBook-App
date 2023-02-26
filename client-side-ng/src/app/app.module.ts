@@ -16,6 +16,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RecipeSearchPipe } from './pipes/recipe-search.pipe';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
 
 
 
@@ -40,6 +44,8 @@ import { RecipeSearchPipe } from './pipes/recipe-search.pipe';
     MatSelectModule,
     MatChipsModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

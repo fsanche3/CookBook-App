@@ -1,8 +1,89 @@
 <div style="background-color: slategray;">
     <div class="header">
         <div class="title"><h3>Meal Generator</h3></div>
-        <div class="add-meal"><button class="btn btn-primary" style="cursor: pointer"> Add Meal</button></div>
+        <div class="add-meal"><button (click)="openPopup()" class="btn btn-primary" style="cursor: pointer"> Add Meal</button></div>
         
     </div>
+    <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add A Recipe!</h4>
+        </div>
+        <div class="modal-body">
+
+    <form class="input-text" #addressForm="ngForm">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Recipe Name...">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Cook Time...">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Recipe Description..."></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Recipe Instructions..."></textarea>
+        </mat-form-field>
+        <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option style="background-color: yellowgreen;">Breakfest</mat-chip-option>
+            <mat-chip-option style="background-color: yellowgreen;">Lunch</mat-chip-option>
+            <mat-chip-option style="background-color: yellowgreen;" selected>Dinner</mat-chip-option>
+          </mat-chip-listbox>
+    <div >
+        <h4 style="margin-top: 1em;">Recipe Ingredients</h4>
+      <div >
+          <button type="button" class="btn btn-primary mb-2" (click)="addAddress()">Add Ingredient</button>
+        <section *ngFor="let address of addresses; let i = index;">
+          <div >
+            <div>
+                <h6>Ingredient {{i + 1}}</h6>
+            </div>
+          </div>
+          <div>
+            <div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="address.address" name="address_{{address.id}}" placeholder="salt.."/>
+                  </div>
+            </div>
+            <div >
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="text" class="form-control" [(ngModel)]="address.street" name="street_{{address.id}}" placeholder="2 tsp's"/>
+                  </div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: right; margin-top: 1em;">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Remove</button>
+        </div>
+        </section>
+      </div>
+    </div>
+    <h4 style="margin-top: 1em;" >Recipe Image</h4>
+    <div class="img-btns"> 
+        <button class="main-bttn" type="button" value="Upload File">Upload Image</button>
+        <input type="file" (change)="getFile($event)"> 
+        </div>
+  </form>
+       
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" 
+                  (click)="closePopup()">
+            Close
+          </button>
+          <button type="button" class="btn btn-danger" 
+                  (click)="closePopup()">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
    
 </div>
