@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Ingredient } from 'src/app/models/ingredient';
+import { Recipe } from 'src/app/models/Recipe';
+import { IngredientsService } from 'src/app/services/ingredients.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-header',
@@ -8,29 +12,44 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   displayStyle = "none";
-  recipe_name: string = "";
   file: any;
-  addresses: any[] = [{
-    address: '',
-    street: '',
-    city: '',
-    country: ''
-  }];
-  addAddress() {
-    this.addresses.push({
-      id: this.addresses.length + 1,
-      address: '',
-      street: '',
-      city: '',
-      country: ''
+  addedImg: boolean = false;
+  ingredients: Ingredient[] = [];
+  name: string = "";
+  cook_time: string = "";
+  type: string = "";
+  description: string = "";
+  img_url: string = "";
+  instructions: string = "";
+
+  constructor(private recipeServ: RecipeService, private ingredientsServ: IngredientsService){}
+
+
+  chooseType(type: string){
+    this.type = type;
+  }
+
+  addRecipe(){
+   let submitRecipe = new Recipe(0, this.name, this.description, this.type, this.cook_time, this.img_url, this.instructions);
+   this.recipeServ.addRecipe(submitRecipe).subscribe(x => {
+    if(x){
+      this.ingredientsServ.addMultipleIngredients(this.ingredients, this.name).subscribe(x => {
+        console.log(x);
+      });
+    }
+   });
+   
+  }
+
+  addIngredient() {
+    this.ingredients.push({
+      id: this.ingredients.length + 1,
     });
   }
 
-  removeAddress(i: number) {
-    this.addresses.splice(i, 1);
+  removeIngredient(i: number) {
+    this.ingredients.splice(i, 1);
   }
-
-
 
   getFile(event: any){
     if(event.target.files[0].size > 200000){

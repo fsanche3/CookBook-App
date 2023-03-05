@@ -1,4 +1,4 @@
-const pool = require('../config/dbConfig');
+const {pool, db} = require('../config/dbConfig');
 require('dotenv').config();
 
 let addRecipe = async (req, res, next) =>{
@@ -68,12 +68,14 @@ let getById = async (req, res, next) => {
 
 let getAll = async (req, res, next) => {
     try{
-    let resp = await pool.query('SELECT * FROM recipe');
+     
+    let resp = await db.any('SELECT * FROM recipe');
 
-    if(!resp.rowCount){
+    if(!resp){
         throw new Error("Could Not Retrieve Recipe's");
     }     
-    return res.send(resp.rows);
+    
+    return res.send(resp);
 
     } catch(err){
         return next(err);

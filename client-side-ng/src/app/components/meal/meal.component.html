@@ -7,7 +7,7 @@
         <mat-card-subtitle><p> <i>Description: </i>{{meal?.description}}</p></mat-card-subtitle>
         <mat-card-subtitle><h5>Ingredients</h5>
         <p *ngFor="let ingredient of displayUnits">
-          {{ingredient.ingredient_name}} - {{ingredient.quantity}} {{ingredient.quantity_unit}}
+          {{ingredient.name}} - {{ingredient.quantity}} 
         </p>
         </mat-card-subtitle>
         <img mat-card-md-image src="{{meal?.img_url}}"  alt="{{meal?.name}}">

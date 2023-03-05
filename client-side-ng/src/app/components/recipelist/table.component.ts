@@ -27,7 +27,7 @@ export class TableComponent implements OnInit{
   }
 
   filterBreakfest(){
-   this.pageSlice = this.recipes.filter(x => x.type === "Breakfest");
+   this.pageSlice = this.recipes.filter(x => x.type === "Breakfast");
   }
   filterLunch(){
     this.pageSlice = this.recipes.filter(x => x.type === "Lunch");
@@ -38,6 +38,7 @@ export class TableComponent implements OnInit{
 
   getRecipes(){
     this.recipeServ.getAllRecipes().subscribe(resp => {
+      console.log(resp);
       this.recipes = resp;
       this.pageSlice = resp.slice(0,3);
     })

@@ -4,11 +4,10 @@ const errHandler = require('../middleware/errorHandler');
 const router = Router();
 require('dotenv').config();
 
-router.get('/', ingredientController.getIngredients);
 
-router.get('/recipe/:id', ingredientController.getRecipesIngredients);
+router.get('/recipe/:name', ingredientController.getRecipesIngredients);
 
-router.post('/', ingredientController.addRecipeIngredient);
+router.post('/multi', ingredientController.addMultipleIngredients);
 
 router.post('/:name', ingredientController.addIngredient);
 

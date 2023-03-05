@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { Recipe } from './models/Recipe';
-import { RecipeService } from './services/recipe.service';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +7,4 @@ import { RecipeService } from './services/recipe.service';
 })
 export class AppComponent {
   title = 'client-side-ng';
-
-
-constructor(){}
 }
-

@@ -32,5 +32,10 @@ export class RecipeService {
     return this.http.get(this.baseUrl+"/").pipe(
       map(resp => resp as Recipe[])
     );
-  }
+    }
+
+  addRecipe(recipe: Recipe){
+    return this.http.post(this.baseUrl+'add_recipe', recipe);
+  }  
+
 }

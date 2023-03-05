@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environments';
 import { Ingredient } from '../models/ingredient';
-import { IngredientRecipe } from '../models/ingredient_recipe';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +13,16 @@ export class IngredientsService {
 
   constructor(private http:HttpClient) { }
 
-  getIngredientsByRecipe(mealId: number): Observable<IngredientRecipe[]>{
-    return this.http.get(this.baseUrl+'recipe/'+mealId).pipe(
-      map(resp => resp as IngredientRecipe[]));
+  getIngredientsByRecipe(meal: string): Observable<Ingredient[]>{
+    return this.http.get(this.baseUrl+'recipe/'+meal).pipe(
+      map(resp => resp as Ingredient[]));
   }
 
-  getAllIngredients(): Observable<Ingredient[]>{
-   return this.http.get(this.baseUrl).pipe(
-    map(resp => resp as Ingredient[])
-   );
-  }
+ addMultipleIngredients(ingredients: Ingredient[], recipeName: string){
+  ingredients.forEach(x => {
+    x.recipe_name = recipeName;
+  });
+  return this.http.post(this.baseUrl + 'multi', ingredients);
+ }
 
 }

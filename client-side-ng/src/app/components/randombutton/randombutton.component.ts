@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -10,10 +10,7 @@ export class RandombuttonComponent {
 
   displayStyle = "none";
 
-
-  constructor(private recipeServ: RecipeService){
-
-  }
+  constructor(private recipeServ: RecipeService){}
 
   ngOnInit(): void {
     // not in use
@@ -35,4 +32,5 @@ export class RandombuttonComponent {
   closePopup() {
     this.displayStyle = "none";
   }
+
 }

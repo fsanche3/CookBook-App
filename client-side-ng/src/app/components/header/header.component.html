@@ -18,27 +18,27 @@
 
     <form class="input-text" #addressForm="ngForm">
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Recipe Name...">
+            <input matInput [(ngModel)]="name" name="name" placeholder="Recipe Name...">
+        </mat-form-field >
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="cook_time" name="name" placeholder="Cook Time...">
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Cook Time...">
+            <textarea matInput [(ngModel)]="description" name="name" placeholder="Recipe Description..."></textarea>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Recipe Description..."></textarea>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Recipe Instructions..."></textarea>
+            <textarea matInput [(ngModel)]="instructions" name="name" placeholder="Recipe Instructions..."></textarea>
         </mat-form-field>
         <mat-chip-listbox aria-label="Fish selection">
-            <mat-chip-option style="background-color: yellowgreen;">Breakfest</mat-chip-option>
-            <mat-chip-option style="background-color: yellowgreen;">Lunch</mat-chip-option>
-            <mat-chip-option style="background-color: yellowgreen;" selected>Dinner</mat-chip-option>
+            <mat-chip-option style="background-color: yellowgreen;" (click)="chooseType('Breakfast')" >Breakfest</mat-chip-option>
+            <mat-chip-option style="background-color: yellowgreen;" (click)="chooseType('Lunch')"  >Lunch</mat-chip-option>
+            <mat-chip-option style="background-color: yellowgreen;" (click)="chooseType('Dinner')"  >Dinner</mat-chip-option>
           </mat-chip-listbox>
     <div >
         <h4 style="margin-top: 1em;">Recipe Ingredients</h4>
       <div >
-          <button type="button" class="btn btn-primary mb-2" (click)="addAddress()">Add Ingredient</button>
-        <section *ngFor="let address of addresses; let i = index;">
+          <button type="button" class="btn btn-primary mb-2" (click)="addIngredient()">Add Ingredient(s)</button>
+        <section *ngFor="let ingredient of ingredients; let i = index;">
           <div >
             <div>
                 <h6>Ingredient {{i + 1}}</h6>
@@ -48,18 +48,18 @@
             <div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="address.address" name="address_{{address.id}}" placeholder="salt.."/>
+                    <input type="text" class="form-control" [(ngModel)]="ingredient.name" name="ingredient_{{ingredient.name}}" placeholder="salt.."/>
                   </div>
             </div>
             <div >
                 <div class="form-group">
                     <label>Quantity</label>
-                    <input type="text" class="form-control" [(ngModel)]="address.street" name="street_{{address.id}}" placeholder="2 tsp's"/>
+                    <input type="text" class="form-control" [(ngModel)]="ingredient.quantity" name="ingredient_{{ingredient.quantity}}" placeholder="2 tsp's"/>
                   </div>
             </div>
           </div>
           <div style="display: flex; justify-content: right; margin-top: 1em;">
-            <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Remove</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeIngredient(i)">Remove</button>
         </div>
         </section>
       </div>
@@ -78,7 +78,7 @@
             Close
           </button>
           <button type="button" class="btn btn-danger" 
-                  (click)="closePopup()">
+                  (click)="addRecipe()">
             Submit
           </button>
         </div>
