@@ -13,8 +13,6 @@ router.post('/add_img', upload.single('file'), aws.uploadToBucket);
 
 router.post('/add_recipe', recipeController.addRecipe);
 
-router.get('/type/:type', recipeController.getByType)
-
 router.get('/:id', recipeController.getById)
 
 router.get('/', recipeController.getAll)

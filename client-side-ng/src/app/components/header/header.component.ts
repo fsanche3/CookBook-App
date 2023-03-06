@@ -30,15 +30,24 @@ export class HeaderComponent {
   }
 
   addRecipe(){
-   let submitRecipe = new Recipe(0, this.name, this.description, this.type, this.cook_time, this.img_url, this.instructions);
-   this.recipeServ.addRecipe(submitRecipe).subscribe(x => {
-    if(x){
-      this.ingredientsServ.addMultipleIngredients(this.ingredients, this.name).subscribe(x => {
-        console.log(x);
+    if(this.img_url){
+      let submitRecipe = new Recipe(0, this.name, this.description, this.type, this.cook_time, this.img_url, this.instructions);
+      this.recipeServ.addRecipe(submitRecipe).subscribe(x => {
+       if(x){
+         this.ingredientsServ.addMultipleIngredients(this.ingredients, this.name).subscribe();
+       }
       });
+    } else {
+        alert("Please Don't Forget a Recipe Photo");
+      }
     }
-   });
-   
+
+  addImage(){
+    if(this.file){
+      this.recipeServ.addRecipeImage(this.file).subscribe(x => {
+        this.img_url = x;
+      })
+    }
   }
 
   addIngredient() {

@@ -38,4 +38,12 @@ export class RecipeService {
     return this.http.post(this.baseUrl+'add_recipe', recipe);
   }  
 
+  addRecipeImage(file: File): Observable<string>{
+    let formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(this.baseUrl+'add_img', formData, 
+    {
+      responseType: 'text'
+    });
+  }
 }
